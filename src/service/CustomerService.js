@@ -12,6 +12,10 @@ class CustomerService {
     return this.customers;
   }
 
+  getId(id) {
+    return this.customers.find((customer) => customer.id === parseInt(id));
+  }
+
   deleteCustomer(customerId) {
     this.customers = this.customers.filter(
       (customer) => customer.id !== customerId

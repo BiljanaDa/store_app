@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import CustomerService from "../service/CustomerService";
+import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 export default function AppCustomers() {
   const [customers, setCustomers] = useState(CustomerService.getAll());
@@ -76,6 +78,9 @@ export default function AppCustomers() {
             </ul>
           </div>
           <div className="col-4">
+            <Link to={`/customers/${customer.id}`} className="btn btn-primary">
+              Latest Purchases
+            </Link>
             <button
               className="btn btn-danger"
               onClick={() => handleDeleteCustomer(customer.id)}
@@ -85,6 +90,7 @@ export default function AppCustomers() {
           </div>
         </div>
       ))}
+      <Outlet />
     </div>
   );
 }
