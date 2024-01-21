@@ -2,9 +2,9 @@ class CustomerService {
   constructor() {
     this.nextId = 4;
     this.customers = [
-      { id: 1, name: "Pera", surname: "Peric" },
-      { id: 2, name: "Mika", surname: "Mikic" },
-      { id: 3, name: "Mila", surname: "Milic" },
+      { id: 1, name: "Pera", surname: "Peric", products: [] },
+      { id: 2, name: "Mika", surname: "Mikic", products: [] },
+      { id: 3, name: "Mila", surname: "Milic", products: [] },
     ];
   }
 

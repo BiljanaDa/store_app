@@ -78,11 +78,14 @@ export default function AppCustomers() {
             </ul>
           </div>
           <div className="col-4">
-            <Link to={`/customers/${customer.id}`} className="btn btn-primary">
+            <Link
+              to={`/customers/${customer.id}`}
+              className="btn btn-primary rounded-pill"
+            >
               Latest Purchases
             </Link>
             <button
-              className="btn btn-danger"
+              className="btn btn-danger rounded-pill"
               onClick={() => handleDeleteCustomer(customer.id)}
             >
               Delete
