@@ -93,7 +93,7 @@ export default function AppCustomers() {
           </div>
         </div>
       ))}
-      <Outlet />
+   
     </div>
   );
 }

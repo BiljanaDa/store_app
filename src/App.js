@@ -14,12 +14,10 @@ function App() {
       <Navs />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path={"customers"} element={<AppCustomers />}>
-          <Route path=":id" element={<LatestPurchases />} />
-        </Route>
-        <Route path={"products"} element={<AppProducts />}>
-          <Route path=":id" element={<Buy />} />
-        </Route>
+        <Route path="customers" element={<AppCustomers />}></Route>
+        <Route path="customers/:id" element={<LatestPurchases />} />
+        <Route path="products" element={<AppProducts />}></Route>
+        <Route path="products/:id" element={<Buy />} />
       </Routes>
     </Router>
   );

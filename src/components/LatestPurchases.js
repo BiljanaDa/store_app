@@ -1,11 +1,13 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import CustomerService from "../service/CustomerService";
+import ProductService from "../service/ProductService";
 
 export default function LatestPurchases() {
   const { id } = useParams();
   const navigate = useNavigate();
   const customer = CustomerService.getId(id);
+  const product = ProductService.getAll();
 
   if (!customer) {
     return navigate("/customers");

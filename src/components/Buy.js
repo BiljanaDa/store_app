@@ -29,12 +29,13 @@ export default function Buy() {
       return;
     }
 
-    CustomerService.addProduct(selectedCustomer, product.id);
+    CustomerService.addProduct(product, selectedCustomer);
     ProductService.decrementQuantity(product.id);
-
+console.log('product', product.id);
+console.log('customer', selectedCustomer);
     alert("Kupovina je uspešno potvrđena!");
 
-    navigate("/products");
+    navigate('/products');
   };
 
   const handleCancel = () => {
