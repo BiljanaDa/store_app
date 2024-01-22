@@ -6,6 +6,7 @@ import AppProducts from "./pages/AppProducts";
 import Home from "./pages/Home";
 import { BrowserRouter as Router, Routes, Route, LInk } from "react-router-dom";
 import LatestPurchases from "./components/LatestPurchases";
+import Buy from "./components/Buy";
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
         <Route path={"customers"} element={<AppCustomers />}>
           <Route path=":id" element={<LatestPurchases />} />
         </Route>
-        <Route path={"products"} element={<AppProducts />}></Route>
+        <Route path={"products"} element={<AppProducts />}>
+          <Route path=":id" element={<Buy />} />
+        </Route>
       </Routes>
     </Router>
   );

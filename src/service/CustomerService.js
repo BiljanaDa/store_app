@@ -26,6 +26,14 @@ class CustomerService {
     const customerToAdd = { id: this.nextId++, ...newCustomer };
     this.customers.push(customerToAdd);
   }
+
+  addProduct(id, product) {
+    const index = this.customers.findIndex(
+      (customer) => customer.id === parseInt(id)
+    );
+
+    this.customers[index].products.push({ ...product });
+  }
 }
 
 export default new CustomerService();

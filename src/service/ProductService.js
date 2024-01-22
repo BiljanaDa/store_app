@@ -12,17 +12,28 @@ class ProductService {
   }
 
   incrementQuantity(productId) {
-    const product = this.products.find((prod) => prod.id === productId);
-    if (product) {
-      product.quantity++;
+    const productIndex = this.products.findIndex(
+      (prod) => prod.id === productId
+    );
+    if (productIndex !== -1) {
+      this.products[productIndex].quantity++;
     }
+    return this.products[productIndex].quantity;
   }
 
   decrementQuantity(productId) {
-    const product = this.products.find((prod) => prod.id === productId);
-    if (product && product.quantity > 0) {
-      product.quantity--;
+    const productIndex = this.products.findIndex(
+      (prod) => prod.id === productId
+    );
+    if (productIndex !== -1 && this.products[productIndex].quantity > 0) {
+      this.products[productIndex].quantity--;
     }
+    return this.products[productIndex].quantity;
+  }
+
+  getId(id) {
+    const product = this.products.find((p) => p.id === parseInt(id));
+    return product;
   }
 }
 

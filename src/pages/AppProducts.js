@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import ProductService from "../service/ProductService";
+import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 export default function AppProducts() {
   const [products, setProducts] = useState(ProductService.getAll());
@@ -9,14 +11,15 @@ export default function AppProducts() {
     product.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  const handleIncrement = (productId) => {
-    console.log("Incrementing quantity for product with ID:", productId);
-    ProductService.incrementQuantity(productId);
+  const handleIncrement = (id) => {
+    const newCount = ProductService.incrementQuantity(id);
+    console.log("New Count after increment:", newCount);
     setProducts([...ProductService.getAll()]);
   };
 
-  const handleDecrement = (productId) => {
-    ProductService.decrementQuantity(productId);
+  const handleDecrement = (id) => {
+    const newCount = ProductService.decrementQuantity(id);
+    console.log("New Count after decrement:", newCount);
     setProducts([...ProductService.getAll()]);
   };
 
@@ -40,15 +43,21 @@ export default function AppProducts() {
             <span className="d-flex align-items-center">
               <strong>{product.name}</strong> (Stock: {product.quantity})
             </span>
-            <div>
+            <div className="d-flex">
+              <Link
+                to={`/products/${product.id}`}
+                className="btn btn-primary mx-2"
+              >
+                Buy
+              </Link>
               <button
-                className="btn btn-success"
+                className="btn btn-success mx-2"
                 onClick={() => handleIncrement(product.id)}
               >
                 +
               </button>
               <button
-                className="btn btn-danger"
+                className="btn btn-danger mx-2"
                 onClick={() => handleDecrement(product.id)}
                 disabled={product.quantity === 0}
               >
@@ -58,6 +67,7 @@ export default function AppProducts() {
           </li>
         ))}
       </ul>
+      <Outlet />
     </div>
   );
 }

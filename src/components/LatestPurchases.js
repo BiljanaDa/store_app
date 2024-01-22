@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import CustomerService from "../service/CustomerService";
-import ProductService from "../service/ProductService";
 
 export default function LatestPurchases() {
   const { id } = useParams();
