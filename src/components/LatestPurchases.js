@@ -8,14 +8,8 @@ export default function LatestPurchases() {
   const navigate = useNavigate();
   const customer = CustomerService.getId(id);
 
-  useEffect(() => {
-    if (!customer) {
-      navigate("/customers");
-    }
-  }, [customer, navigate]);
-
   if (!customer) {
-    return null;
+    return navigate("/customers");
   }
 
   return (

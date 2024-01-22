@@ -2,11 +2,23 @@ import React, { useState } from "react";
 import ProductService from "../service/ProductService";
 
 export default function AppProducts() {
-  const products = ProductService.getAll();
+  const [products, setProducts] = useState(ProductService.getAll());
   const [search, setSearch] = useState("");
+
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
   );
+
+  const handleIncrement = (productId) => {
+    console.log("Incrementing quantity for product with ID:", productId);
+    ProductService.incrementQuantity(productId);
+    setProducts([...ProductService.getAll()]);
+  };
+
+  const handleDecrement = (productId) => {
+    ProductService.decrementQuantity(productId);
+    setProducts([...ProductService.getAll()]);
+  };
 
   return (
     <div className="container mt-4">
@@ -26,8 +38,23 @@ export default function AppProducts() {
             className="list-group-item d-flex justify-content-between align-items-center"
           >
             <span className="d-flex align-items-center">
-              <strong>{product.name}</strong>
+              <strong>{product.name}</strong> (Stock: {product.quantity})
             </span>
+            <div>
+              <button
+                className="btn btn-success"
+                onClick={() => handleIncrement(product.id)}
+              >
+                +
+              </button>
+              <button
+                className="btn btn-danger"
+                onClick={() => handleDecrement(product.id)}
+                disabled={product.quantity === 0}
+              >
+                -
+              </button>
+            </div>
           </li>
         ))}
       </ul>
