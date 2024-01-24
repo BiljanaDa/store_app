@@ -1,3 +1,5 @@
+import productService from "./ProductService";
+
 class CustomerService {
   constructor() {
     this.nextId = 4;
@@ -8,18 +10,16 @@ class CustomerService {
     ];
   }
 
-  getAll() {
+  getAllCustomers() {
     return this.customers;
   }
 
-  getId(id) {
+  getCustomerById(id) {
     return this.customers.find((customer) => customer.id === parseInt(id));
   }
 
-  deleteCustomer(customerId) {
-    this.customers = this.customers.filter(
-      (customer) => customer.id !== customerId
-    );
+  deleteCustomer(id) {
+    this.customers = this.customers.filter((customer) => customer.id !== id);
   }
 
   addNewCustomer(newCustomer) {
@@ -27,13 +27,14 @@ class CustomerService {
     this.customers.push(customerToAdd);
   }
 
-  addProduct(id, product) {
+  addProductToCustomer(id, product) {
     const index = this.customers.findIndex(
-      (customer) => customer.id === parseInt(id)
+      (customer) => customer.id === Number(id)
     );
 
     this.customers[index].products.push({ ...product });
   }
 }
 
-export default new CustomerService();
+const customerService = new CustomerService();
+export default customerService;

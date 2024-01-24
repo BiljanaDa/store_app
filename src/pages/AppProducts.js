@@ -1,26 +1,23 @@
 import React, { useState } from "react";
-import ProductService from "../service/ProductService";
+import productService from "../service/ProductService";
 import { Link } from "react-router-dom";
-import { Outlet } from "react-router-dom";
 
 export default function AppProducts() {
-  const [products, setProducts] = useState(ProductService.getAll());
+  const [products, setProducts] = useState(productService.getAllProducts());
   const [search, setSearch] = useState("");
 
   const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(search.toLowerCase())
+    product.name.toLowerCase().startsWith(search.toLowerCase())
   );
 
-  const handleIncrement = (id) => {
-    const newCount = ProductService.incrementQuantity(id);
-    console.log("New Count after increment:", newCount);
-    setProducts([...ProductService.getAll()]);
+  const handleIncrement = (productId) => {
+    productService.incrementQuantity(productId);
+    setProducts([...productService.getAllProducts()]);
   };
 
-  const handleDecrement = (id) => {
-    const newCount = ProductService.decrementQuantity(id);
-    console.log("New Count after decrement:", newCount);
-    setProducts([...ProductService.getAll()]);
+  const handleDecrement = (productId) => {
+    productService.decrementQuantity(productId);
+    setProducts([...productService.getAllProducts()]);
   };
 
   return (
@@ -33,7 +30,6 @@ export default function AppProducts() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-
       <ul className="list-group list-group-flush w-50">
         {filteredProducts.map((product) => (
           <li
@@ -67,7 +63,6 @@ export default function AppProducts() {
           </li>
         ))}
       </ul>
-      <Outlet />
     </div>
   );
 }
