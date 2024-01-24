@@ -27,11 +27,16 @@ class CustomerService {
     this.customers.push(customerToAdd);
   }
 
+<<<<<<< HEAD
   addProductToCustomer(id, product) {
+=======
+  addProduct(product,id) {
+    console.log('customer service', id);
+    console.log('customer service', product);
+>>>>>>> c15c2e2e5dad5ba0fee71da6ce1b5e595f0f0ac7
     const index = this.customers.findIndex(
       (customer) => customer.id === Number(id)
     );
-
     this.customers[index].products.push({ ...product });
   }
 }

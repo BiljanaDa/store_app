@@ -19,10 +19,33 @@ export default function BuyProduct() {
       return;
     }
 
+<<<<<<< HEAD:src/components/BuyProduct.js
     const newCount = productService.decrementQuantity(product.id);
     setProduct({ ...product, count: newCount });
 
     alert("Kupovina je uspešno potvrđena!");
+=======
+    const product = ProductService.getId(id);
+
+    if (!product) {
+      alert("Proizvod nije pronađen.");
+      return;
+    }
+
+    if (product.quantity === 0) {
+      alert("Proizvod trenutno nije dostupan na lageru.");
+      navigate("/products");
+      return;
+    }
+
+    CustomerService.addProduct(product, selectedCustomer);
+    ProductService.decrementQuantity(product.id);
+console.log('product', product.id);
+console.log('customer', selectedCustomer);
+    alert("Kupovina je uspešno potvrđena!");
+
+    navigate('/products');
+>>>>>>> c15c2e2e5dad5ba0fee71da6ce1b5e595f0f0ac7:src/components/Buy.js
   };
 
   const handleCancel = () => {

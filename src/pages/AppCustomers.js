@@ -96,8 +96,28 @@ export default function AppCustomers() {
               </Link>
             </div>
           </div>
+<<<<<<< HEAD
         ))}
       </div>
+=======
+          <div className="col-4">
+            <Link
+              to={`/customers/${customer.id}`}
+              className="btn btn-primary rounded-pill"
+            >
+              Latest Purchases
+            </Link>
+            <button
+              className="btn btn-danger rounded-pill"
+              onClick={() => handleDeleteCustomer(customer.id)}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      ))}
+   
+>>>>>>> c15c2e2e5dad5ba0fee71da6ce1b5e595f0f0ac7
     </div>
   );
 }
